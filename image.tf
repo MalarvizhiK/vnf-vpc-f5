@@ -61,7 +61,6 @@ data "external" "authorize_policy_for_image" {
 }
 
 resource "ibm_is_image" "f5_custom_image" {
-  count            = "${var.copy_f5_image == "y" ? 1 : 0}"
   depends_on       = ["data.external.authorize_policy_for_image"]
   href             = "${local.image_url}"
   name             = "${var.f5_image_name}"
