@@ -26,7 +26,7 @@ resource "ibm_is_instance" "f5_vsi" {
   image   = "${data.ibm_is_image.f5_custom_image.id}"
   profile = "${data.ibm_is_instance_profile.f5_profile.name}"
 
-  primary_network_interface = {
+  primary_network_interface {
     subnet = "${data.ibm_is_subnet.f5_subnet1.id}"
   }
 
