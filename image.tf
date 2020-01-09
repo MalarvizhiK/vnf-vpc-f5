@@ -60,10 +60,12 @@ data "external" "authorize_policy_for_image" {
   }
 }
 
+resource "random_uuid" "test" { }
+
 resource "ibm_is_image" "f5_custom_image" {
-  depends_on       = ["data.external.authorize_policy_for_image"]
+  depends_on       = ["data.external.authorize_policy_for_image", "random_uuid.test"]
   href             = "${local.image_url}"
-  name             = "${var.f5_image_name}"
+  name             = "${var.f5_image_name}-${random_uuid.test.result}"
   operating_system = "centos-7-amd64"
 
   timeouts {
